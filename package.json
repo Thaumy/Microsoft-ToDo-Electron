@@ -1,0 +1,38 @@
+{
+  "name": "microsoft-todo-electron",
+  "version": "1.0.0",
+  "description": "Microsoft To Do Client in Electron",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "repository": "https://github.com/Thaumy/Microsoft-ToDo-Electron",
+  "keywords": [
+    "Electron",
+    "ToDo",
+    "Microsoft ToDo",
+    "Thaumy"
+  ],
+  "author": "Thaumy <thaumy@outlook.com>",
+  "license": "BSD-2-Clause",
+  "devDependencies": {
+    "electron": "^17.1.0",
+    "electron-builder": "^22.14.13"
+  },
+  "build": {
+    "appId": "Microsoft-ToDo-Electron",
+    "extraResources": [
+      {
+        "from": "./appstatus.json",
+        "to": "../"
+      }
+    ],
+    "linux": {
+      "target": [
+        "tar.gz"
+      ]
+    }
+  }
+}
