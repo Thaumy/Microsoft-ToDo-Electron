@@ -1,4 +1,4 @@
-# Microsoft-To-Do-Electron
+# Microsoft-ToDo-Electron
 
 Microsoft To Do Client in Electron
 
