@@ -27,6 +27,10 @@
       {
         "from": "./appstatus.json",
         "to": "../"
+      },
+      {
+        "from": "./appconfig.json",
+        "to": "../"
       }
     ],
     "linux": {

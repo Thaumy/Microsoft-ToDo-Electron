@@ -21,20 +21,23 @@ function createWindow() {
 
     // Open the DevTools.
     // mainWindow.webContents.openDevTools()*/
-
-
-    mainWindow = new BrowserWindow({
-        width: 600,
-        height: 800,
-        resizable: false,
-    })
+    let appstatus
+    let appconfig
 
     try {
-        const appstatus = JSON.parse(fs.readFileSync('./appstatus.json', 'utf8'))
-        mainWindow.loadURL(appstatus.url)//还原导航状态
+        appstatus = JSON.parse(fs.readFileSync('./appstatus.json', 'utf8'))
+        appconfig = JSON.parse(fs.readFileSync('./appconfig.json', 'utf8'))
     } catch (e) {
         console.log(e)
     }
+
+    mainWindow = new BrowserWindow({
+        width: appconfig.width,
+        height: appconfig.height,
+        resizable: appconfig.resizable,
+    })
+
+    mainWindow.loadURL(appstatus.url)//还原导航状态
 
     mainWindow.on('close', () => {
         const url = mainWindow.webContents.getURL()
