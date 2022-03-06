@@ -24,14 +24,17 @@ function createWindow() {
 
 
     mainWindow = new BrowserWindow({
-        width: 700,
+        width: 600,
         height: 800,
         resizable: false,
     })
 
-    const appstatus = JSON.parse(fs.readFileSync('./appstatus.json', 'utf8'))
-
-    mainWindow.loadURL(appstatus.url)//还原导航状态
+    try {
+        const appstatus = JSON.parse(fs.readFileSync('./appstatus.json', 'utf8'))
+        mainWindow.loadURL(appstatus.url)//还原导航状态
+    } catch (e) {
+        console.log(e)
+    }
 
     mainWindow.on('close', () => {
         const url = mainWindow.webContents.getURL()
