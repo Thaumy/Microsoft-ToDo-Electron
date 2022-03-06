@@ -21,12 +21,17 @@ function createWindow() {
 
     // Open the DevTools.
     // mainWindow.webContents.openDevTools()*/
+    let runPath = app.getPath("exe").substring(0, app.getPath("exe").length - app.getName().length)
+
+    let appstatus_path = `${runPath}/appstatus.json`
+    let appconfig_path = `${runPath}/appconfig.json`
+
     let appstatus
     let appconfig
 
     try {
-        appstatus = JSON.parse(fs.readFileSync('./appstatus.json', 'utf8'))
-        appconfig = JSON.parse(fs.readFileSync('./appconfig.json', 'utf8'))
+        appstatus = JSON.parse(fs.readFileSync(appstatus_path, 'utf8'))
+        appconfig = JSON.parse(fs.readFileSync(appconfig_path, 'utf8'))
     } catch (e) {
         console.log(e)
     }
@@ -43,7 +48,7 @@ function createWindow() {
         const url = mainWindow.webContents.getURL()
         if (url !== "") {
             const json = {"url": url}
-            fs.writeFileSync("./appstatus.json", JSON.stringify(json), "utf8")
+            fs.writeFileSync(appstatus_path, JSON.stringify(json), "utf8")
         }
     })
 }
