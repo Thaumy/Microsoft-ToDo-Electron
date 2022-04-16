@@ -1,5 +1,5 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow, Menu} = require('electron')
+const {app, shell, BrowserWindow, Menu} = require('electron')
 const path = require('path')
 const fs = require('fs')
 
@@ -41,6 +41,9 @@ function createWindow() {
         height: appconfig.height,
         resizable: appconfig.resizable,
     })
+
+    //using system default browser to open link
+    mainWindow.webContents.setWindowOpenHandler(details => shell.openExternal(details.url));
 
     mainWindow.loadURL(appstatus.url)//还原导航状态
 
