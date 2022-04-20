@@ -18,8 +18,8 @@
   "author": "Thaumy <thaumy@outlook.com>",
   "license": "BSD-2-Clause",
   "devDependencies": {
-    "electron": "^17.1.0",
-    "electron-builder": "^22.14.13"
+    "electron": "^18.0.4",
+    "electron-builder": "^23.0.3"
   },
   "build": {
     "appId": "Microsoft-ToDo-Electron",
