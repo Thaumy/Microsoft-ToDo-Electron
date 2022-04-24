@@ -7,31 +7,38 @@ const fs = require('fs')
 Menu.setApplicationMenu(null)
 
 function createWindow() {
-    /*// Create the browser window.
-    const mainWindow = new BrowserWindow({
+    // Create the browser window.
+    /*const mainWindow = new BrowserWindow({
       width: 800,
       height: 600,
       webPreferences: {
         preload: path.join(__dirname, 'preload.js')
       }
-    })
+    })*/
 
     // and load the index.html of the app.
-    mainWindow.loadFile('index.html')
+    //mainWindow.loadFile('index.html')
 
-    // Open the DevTools.
-    // mainWindow.webContents.openDevTools()*/
-    let runPath = app.getPath("exe").substring(0, app.getPath("exe").length - app.getName().length)
+    let runPath//path of exe file
+    if (!app.isPackaged)
+        //The length of str 'node_modules' is 12
+        runPath = app.getPath("exe").substring(0, app.getPath("exe").length - app.getName().length - 12)//dev
+    else
+        runPath = app.getPath("exe").substring(0, app.getPath("exe").length - app.getName().length)//prod
+
 
     let appstatus_path = `${runPath}/appstatus.json`
     let appconfig_path = `${runPath}/appconfig.json`
+    let darkCss_path = `${runPath}/dark.css`
 
     let appstatus
     let appconfig
+    let darkCss
 
     try {
         appstatus = JSON.parse(fs.readFileSync(appstatus_path, 'utf8'))
         appconfig = JSON.parse(fs.readFileSync(appconfig_path, 'utf8'))
+        darkCss = fs.readFileSync(darkCss_path, 'utf8')
     } catch (e) {
         console.log(e)
     }
@@ -40,10 +47,24 @@ function createWindow() {
         width: appconfig.width,
         height: appconfig.height,
         resizable: appconfig.resizable,
+        show: false
     })
+
+    // Open the DevTools.
+    //mainWindow.webContents.openDevTools()
 
     //using system default browser to open link
     mainWindow.webContents.setWindowOpenHandler(details => shell.openExternal(details.url));
+
+    if (appconfig.darkMode)
+        mainWindow.webContents.on("dom-ready", async function () {
+            await mainWindow.webContents.insertCSS(darkCss)
+        });
+
+    mainWindow.webContents.on("did-finish-load", async function () {
+        mainWindow.show()
+    });
+
 
     mainWindow.loadURL(appstatus.url)//还原导航状态
 

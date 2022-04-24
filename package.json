@@ -31,6 +31,10 @@
       {
         "from": "./appconfig.json",
         "to": "../"
+      },
+      {
+        "from": "./dark.css",
+        "to": "../"
       }
     ],
     "linux": {
