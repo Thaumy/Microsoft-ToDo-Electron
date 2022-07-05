@@ -1,0 +1,31 @@
+.o365cs-base .o365sx-button {
+    background-color: #0000 !important;
+}
+
+._3XjCbKdKOEIOUJsh2GlYnZ.o365sx-appName {
+    background-color: #0000 !important;
+}
+
+.o365sx-navbar {
+    background-color: #00457b !important;
+}
+
+.mectrl_commands {
+    display: none;
+}
+
+.officeApps {
+    display: none !important;
+}
+
+button#O365_MainLink_NavMenu {
+    display: none;
+}
+
+button#owaToDoButton {
+    display: none;
+}
+
+button#whatsnew {
+    display: none;
+}

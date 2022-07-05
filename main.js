@@ -30,15 +30,18 @@ function createWindow() {
     let appstatus_path = `${runPath}/appstatus.json`
     let appconfig_path = `${runPath}/appconfig.json`
     let darkCss_path = `${runPath}/dark.css`
+    let globCss_path = `${runPath}/glob.css`
 
     let appstatus
     let appconfig
+    let globCss
     let darkCss
 
     try {
         appstatus = JSON.parse(fs.readFileSync(appstatus_path, 'utf8'))
         appconfig = JSON.parse(fs.readFileSync(appconfig_path, 'utf8'))
         darkCss = fs.readFileSync(darkCss_path, 'utf8')
+        globCss = fs.readFileSync(globCss_path, 'utf8')
     } catch (e) {
         console.log(e)
     }
@@ -54,10 +57,13 @@ function createWindow() {
     //mainWindow.webContents.openDevTools()
 
     //using system default browser to open link
-    mainWindow.webContents.setWindowOpenHandler(details => shell.openExternal(details.url));
+    mainWindow.webContents.setWindowOpenHandler(details =>
+        shell.openExternal(details.url)
+    )
 
     if (appconfig.darkMode)
         mainWindow.webContents.on("dom-ready", async function () {
+            await mainWindow.webContents.insertCSS(globCss)
             await mainWindow.webContents.insertCSS(darkCss)
         });
 
@@ -65,12 +71,12 @@ function createWindow() {
         mainWindow.show()
     });
 
-
-    mainWindow.loadURL(appstatus.url)//还原导航状态
+    mainWindow.loadURL(appstatus.url)//restore navi status
 
     mainWindow.on('close', () => {
         const url = mainWindow.webContents.getURL()
-        if (url !== "") {
+        //save url to status when still in to-do
+        if (url.startsWith("https://to-do.live.com/tasks/")) {
             const json = {"url": url}
             fs.writeFileSync(appstatus_path, JSON.stringify(json), "utf8")
         }

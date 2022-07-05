@@ -35,6 +35,10 @@
       {
         "from": "./dark.css",
         "to": "../"
+      },
+      {
+        "from": "./glob.css",
+        "to": "../"
       }
     ],
     "linux": {
