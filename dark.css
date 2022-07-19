@@ -4,7 +4,8 @@ body {
 
 :root {
     --bg-primary: #242424 !important;
-    --bg-secondary: #353535 !important;
+    --bg-primary-accent: #242424 !important;
+    --bg-secondary: hsl(0deg 0% 16%) !important;
     --bg-tertiary: #2a2a2a !important;
     --bg-hover: #353535 !important;
     --bg-hover-secondary: #303030 !important;
@@ -32,4 +33,5 @@ body {
     --bg-ms-word: #185abd !important;
     --bg-ms-power-point: #c43e1c !important;
     --bg-ms-teams: #6355a8 !important;
+    --bg-shadow: rgb(0 0 0 / 80%) !important;
 }
