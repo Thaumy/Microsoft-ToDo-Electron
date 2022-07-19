@@ -54,7 +54,7 @@ function createWindow() {
     })
 
     // Open the DevTools.
-    mainWindow.webContents.openDevTools()
+    //mainWindow.webContents.openDevTools()
 
     //using system default browser to open link
     mainWindow.webContents.setWindowOpenHandler(details =>
