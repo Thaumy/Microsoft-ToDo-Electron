@@ -2,5 +2,5 @@
   "width": 500,
   "height": 800,
   "resizable": false,
-  "darkMode": true
+  "enableTheme": true
 }
