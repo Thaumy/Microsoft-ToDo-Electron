@@ -1,7 +1,7 @@
 with import <nixpkgs> {};
 
 let 
-  dep = with pkgs; [
+  rpath = with pkgs; lib.makeLibraryPath [
     nss
     atk
     zlib
@@ -14,55 +14,46 @@ let
     expat
     cairo
     pango
-    ffmpeg
     libpng
     libdrm
     systemd
     freetype
     alsa-lib
-    libgcrypt
-    libnotify
     fontconfig
     gdk-pixbuf
-    xorg.libSM
     xorg.libXi
     xorg.libX11
-    xorg.libICE
     xorg.libxcb
-    at-spi2-atk
     at-spi2-core
     libxkbcommon
     xorg.libXext
-    xorg.libXtst
     stdenv.cc.cc
-    libpulseaudio
     xorg.libXfixes
     xorg.libXrandr
-    curlWithGnuTls
     xorg.libXcursor
     xorg.libXdamage
     xorg.libXrender
-    xorg.libxshmfence
-    xorg.libXScrnSaver
     xorg.libXcomposite
   ];
-  rpath = lib.makeLibraryPath dep;
+
+  src = fetchurl {
+      url = "https://github.com/Thaumy/Microsoft-ToDo-Electron/releases/download/v1.3.0/microsoft-todo-electron-1.3.0.tar.gz";
+      sha256 = "1n3sbw2xc9dqz6drnmdbjvkx8zxls60xmjlmfs07zxhm2a2amlp5";
+  };
 in 
   stdenv.mkDerivation rec {
     name = "microsoft-todo-electron";
-    env = buildEnv { name = name; paths = buildInputs; };
-    buildInputs = with pkgs; [
-      patchelf 
-    ];
 
     phases = [ "unpackPhase" "installPhase" ];
+    
     unpackPhase = ''
-      echo $stdenv
+      mkdir unzipped
+      tar -xvzf ${src} -C unzipped
     '';
+
     installPhase = ''
-      echo `pwd`
-      cp -r /home/thaumy/dev/repo/Microsoft-ToDo-Electron/dist/linux-unpacked $out/
-      cp -r dist/linux-unpacked $out/
-      patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" --set-rpath ${rpath} $out/microsoft-todo-electron
+      cp -r unzipped/* $out
+      patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" --set-rpath ${rpath}:$out $out/microsoft-todo-electron
+      echo `ldd $out/microsoft-todo-electron | grep "not found"` # echo for debug.
     '';
   }
