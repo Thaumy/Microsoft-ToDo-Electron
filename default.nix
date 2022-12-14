@@ -55,7 +55,7 @@ stdenv.mkDerivation rec {
 
   src = fetchurl {
     url = "https://github.com/Thaumy/Microsoft-ToDo-Electron/releases/download/v1.3.1/microsoft-todo-electron-1.3.1.tar.gz";
-    sha256 = "";
+    sha256 = "0w51cbkkwc392pqnz2p98xin84560lpqjpgp0sgx258b01gj230i";
   };
   
   unpackPhase = ''
