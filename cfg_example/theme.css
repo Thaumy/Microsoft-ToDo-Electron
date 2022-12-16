@@ -1,0 +1,37 @@
+body {
+    background-color: #181818;
+}
+
+:root {
+    --bg-primary: #242424 !important;
+    --bg-primary-accent: #242424 !important;
+    --bg-secondary: hsl(0deg 0% 16%) !important;
+    --bg-tertiary: #2a2a2a !important;
+    --bg-hover: #353535 !important;
+    --bg-hover-secondary: #303030 !important;
+    --bg-hover-tertiary: #242424 !important;
+    --bg-active: #353535 !important;
+    --bg-active-secondary: #242424 !important;
+    --bg-active-tertiary: #161616 !important;
+    --bg-separator: #161616 !important;
+    --bg-border: #222222 !important;
+    --bg-scrollbar: #A19F9D !important;
+    --bg-brand: #2564cf !important;
+    --bg-brand-hover: #215aba !important;
+    --bg-brand-hover-secondary: #8c93a5 !important;
+    --bg-brand-secondary: #ecf6fd !important;
+    --bg-brand-disable: #EDEBE9 !important;
+    --font-color-primary: #f5f5f5 !important;
+    --font-color-secondary: #797775 !important;
+    --font-color-tertiary: #797775 !important;
+    --font-color-warning: #a80000 !important;
+    --font-color-brand: #c5c5c5 !important;
+    --font-color-disable: #A19F9D !important;
+    --bg-ms-planner: #31752f !important;
+    --bg-ms-one-note: #7719aa !important;
+    --bg-ms-excel: #107c41 !important;
+    --bg-ms-word: #185abd !important;
+    --bg-ms-power-point: #c43e1c !important;
+    --bg-ms-teams: #6355a8 !important;
+    --bg-shadow: rgb(0 0 0 / 80%) !important;
+}
