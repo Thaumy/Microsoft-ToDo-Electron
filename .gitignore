@@ -53,6 +53,7 @@ cmake-build-debug-coverage
 cmake-build-debug
 
 # build
+result
 build
 bin
 obj
