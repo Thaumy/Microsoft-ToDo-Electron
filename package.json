@@ -1,6 +1,6 @@
 {
   "name": "microsoft-todo-electron",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "Microsoft To Do wrapped in Electron",
   "main": "main.js",
   "scripts": {
@@ -18,8 +18,8 @@
   "author": "Thaumy <thaumy@outlook.com>",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^18.1.0",
-    "electron-builder": "^23.0.3"
+    "electron": "v23.0.0",
+    "electron-builder": "v23.6.0"
   },
   "build": {
     "appId": "Microsoft-ToDo-Electron",
